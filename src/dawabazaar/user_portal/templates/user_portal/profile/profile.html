@@ -1,0 +1,62 @@
+{% extends 'user_portal/profile/base.html' %}
+{% load static %}
+
+<!-- title of the page -->
+{% block title %}
+User Profile
+{% endblock title %}
+
+<!-- Submenu -->
+{% block submenu %}
+<div class="submenu">
+    <a href="{% url 'customer:user-profile' %}" class="nav-item active">
+        <i class="fas fa-user"></i> Profile Information
+    </a>
+    <a href="{% url 'customer:manage-user-addresses' %}" class="nav-item">
+        <i class="fas fa-map-marker-alt"></i> Manage Addresses
+    </a>
+    <a href="{% url 'customer:change-password' %}" class="nav-item">
+        <i class="fas fa-key"></i> Change Password
+    </a>
+</div>
+{% endblock submenu %}
+
+<!-- Main Content -->
+{% block content %}
+<main class="content">
+    <header class="content-header">
+        <h1>Personal Information</h1>
+        <a href="{% url 'customer:update-user-profile' user.id %}"><button><i class="fas fa-edit"></i>
+                Edit</button></a>
+    </header>
+    <div class="details">
+        <div class="detail-row">
+            <label for="first-name">First Name</label>
+            <input type="text" id="first-name" value="{{ user.first_name}}" readonly>
+        </div>
+        <div class="detail-row">
+            <label for="last-name">Last Name</label>
+            <input type="text" id="last-name" value="{{ user.last_name }}" readonly>
+        </div>
+        <div class="detail-row">
+            <label>Gender</label>
+            <div class="gender-options" aria-readonly="true">
+                <label>
+                    <input type="radio" name="gender" checked readonly> Male
+                </label>
+                <label>
+                    <input type="radio" name="gender" readonly> Female
+                </label>
+            </div>
+        </div>
+        <div class="detail-row">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" value="{{ user.email }}" readonly>
+        </div>
+        <div class="detail-row">
+            <label for="mobile">Mobile Number</label>
+            <input type="text" id="mobile" value="{{ user.phone }}" readonly>
+        </div>
+    </div>
+</main>
+{% endblock content %}

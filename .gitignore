@@ -1,0 +1,8 @@
+# Environmental variables
+/.venv/
+
+# database
+/src/dawabazaar/db.sqlite3
+
+# temperary file
+/src/temp.py

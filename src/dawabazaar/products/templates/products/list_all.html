@@ -1,0 +1,44 @@
+{% extends 'seller_portal/base.html' %}
+
+{% block title %}Products - {{ seller.shopname }}{% endblock %}
+
+{% block header_title %}
+Products
+<a href="{% url 'products:create-product' %}" class="btn btn-primary">
+    <i class="fas fa-plus"></i> Add New Product
+</a>
+{% endblock %}
+
+{% block content %}
+<div class="products-grid">
+    {% for product in products %}
+    <div class="product-card">
+        <div class="product-image">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            {% if not product.is_active %}
+            <div class="inactive-overlay">Inactive</div>
+            {% endif %}
+        </div>
+        <div class="product-details">
+            <h3>{{ product.name }}</h3>
+            <p class="price">₹{{ product.price }}</p>
+            <p class="stock">Stock: {{ product.stock }}</p>
+            <div class="product-actions">
+                <a href="{% url 'products:edit-product' product.pk %}" class="btn btn-edit">
+                    <i class="fas fa-edit"></i> Edit
+                </a>
+                <a href="{% url 'products:delete-product' product.pk %}" class="btn btn-delete">
+                    <i class="fas fa-trash"></i> Delete
+                </a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="no-products">
+        <i class="fas fa-box-open"></i>
+        <p>No products added yet</p>
+        <!-- <a href="{% url 'products:create-product' %}" class="btn btn-primary">Add Your First Product</a> -->
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

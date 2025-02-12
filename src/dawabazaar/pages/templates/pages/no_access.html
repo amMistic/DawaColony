@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Denied - DawaColoney</title>
+    <link rel="stylesheet" href="{% static 'pages/css/no_access.css' %}">
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m0 0v2m0-2h2m-2 0H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+        </div>
+        <h1>Access Denied</h1>
+        <p class="error-message">
+            Sorry, you don't have permission to access this page. Please make sure you're logged in with the correct account or contact support if you believe this is an error.
+        </p>
+        <div class="button-group">
+            <a href="/" class="button primary-button">Go to Homepage</a>
+            <a href="{% url 'accounts:login' %}" class="button secondary-button">Login</a>
+        </div>
+        <p class="support-text">
+            Need help? <a href="{% url 'pages:home' %}">Contact our support team</a>
+        </p>
+    </div>
+</body>
+</html>

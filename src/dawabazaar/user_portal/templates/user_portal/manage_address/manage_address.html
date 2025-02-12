@@ -1,0 +1,85 @@
+{% extends 'user_portal/profile/base.html' %}
+{% load static %}
+
+<!-- title of the page -->
+{% block title %}
+Manage Address
+{% endblock title %}
+
+<!-- Submenu -->
+{% block submenu %}
+<div class="submenu">
+    <a href="{% url 'customer:user-profile' %}" class="nav-item">
+        <i class="fas fa-user"></i> Profile Information
+    </a>
+    <a href="{% url 'customer:manage-user-addresses' %}" class="nav-item active">
+        <i class="fas fa-map-marker-alt"></i> Manage Addresses
+    </a>
+    <a href="{% url 'customer:change-password' %}" class="nav-item">
+        <i class="fas fa-key"></i> Change Password
+    </a>
+</div>
+{% endblock submenu %}
+
+<!-- Main Section -->
+{% block content %}
+<main class="content">
+    <header class="content-header">
+        <h1>Manage Addresses</h1>
+        <a href="{% url 'customer:add-address' %}" class="add-btn">
+            <i class="fas fa-plus"></i> Add New Address
+        </a>
+    </header>
+
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="addresses-list">
+        {% for address in addresses %}
+        <div class="address-card {% if address.is_default %}default{% endif %}">
+            <div class="address-type">
+                {{ address.get_address_type_display }}
+                {% if address.is_default %}
+                <span class="default-badge">DEFAULT</span>
+                {% endif %}
+            </div>
+            <div class="address-content">
+                <div class="address-name">{{ address.full_name }}</div>
+                <div class="address-phone">{{ address.phone_number }}</div>
+                <div class="address-details">
+                    {{ address.address_line1 }},
+                    {% if address.address_line2 %}{{ address.address_line2 }},{% endif %}
+                    {% if address.landmark %}Near {{ address.landmark }},{% endif %}
+                    {{ address.city }}, {{ address.state }} - {{ address.pincode }}
+                </div>
+            </div>
+            <div class="address-actions">
+                <a href="{% url 'customer:edit-address' address.id %}" class="action-btn edit-btn">
+                    <i class="fas fa-edit"></i> Edit
+                </a>
+                {% if not address.is_default %}
+                <a href="{% url 'customer:set-default-address' address.id %}" class="action-btn default-btn">
+                    <i class="fas fa-check"></i> Set as Default
+                </a>
+                <a href="{% url 'customer:delete-address' address.id %}" class="action-btn delete-btn"
+                    onclick="return confirm('Are you sure you want to delete this address?')">
+                    <i class="fas fa-trash"></i> Delete
+                </a>
+                {% endif %}
+            </div>
+        </div>
+        {% empty %}
+        <div class="no-addresses">
+            <i class="fas fa-map-marker-alt"></i>
+            <p>No addresses added yet</p>
+            <!-- <a href="{% url 'customer:add-address' %}" class="add-btn">Add New Address</a> -->
+        </div>
+        {% endfor %}
+    </div>
+</main>
+{% endblock content %}

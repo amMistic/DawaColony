@@ -1,0 +1,76 @@
+{% extends 'seller_portal/base.html' %}
+
+{% block title %}Orders - {{ seller.shopname }}{% endblock %}
+
+{% block header_title %}Orders{% endblock %}
+
+{% block content %}
+<div class="orders-container">
+    <div class="orders-filters">
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search orders...">
+        </div>
+
+        <div class="filter-options">
+            <select>
+                <option value="">All Statuses</option>
+                <option value="PENDING">Pending</option>
+                <option value="PROCESSING">Processing</option>
+                <option value="SHIPPED">Shipped</option>
+                <option value="DELIVERED">Delivered</option>
+                <option value="CANCELLED">Cancelled</option>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="orders-list">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>#{{ order.id }}</td>
+                    <td>{{ order.product.name }}</td>
+                    <td>{{ order.quantity }}</td>
+                    <td>₹{{ order.total_amount }}</td>
+                    <td>
+                        <span class="status-badge status-{{ order.status|lower }}">
+                            {{ order.status }}
+                        </span>
+                    </td>
+                    <td>{{ order.created_at|date:"M d, Y" }}</td>
+                    <td>
+                        <form method="POST" action="{% url 'seller:update-orders-status' order.pk %}" class="status-update-form">
+                            {% csrf_token %}
+                            <select name="status" onchange="this.form.submit()">
+                                {% for status, label in order.STATUS_CHOICES %}
+                                <option value="{{ status }}" {% if order.status == status %}selected{% endif %}>
+                                    {{ label }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </form>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="7" class="no-data">No orders found</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

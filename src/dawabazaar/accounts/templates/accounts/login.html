@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'accounts/css/register_style.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-header">
+            <h1>Welcome Back!!</h1>
+        </div>
+
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <p class="{% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+        <form class="form-body" method="post">
+            {% csrf_token %}
+            <div class="form-group" name="username">
+                <label for="id_username">Username</label>
+                {{ form.username }}
+                {% if form.username.errors %}
+                <p class="error">{{ form.username.errors.0 }}</p>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="id_password" name="password">Password</label>
+                {{ form.password }}
+                {% if form.password.errors %}
+                <p class="error">{{ form.password.errors.0 }}</p>
+                {% endif %}
+            </div>
+            <button type="submit" class="form-submit">Login</button>
+        </form>
+        <div class="form-footer">
+            <p>Don't have account? <a href="{% url 'accounts:register' %}">Sign up</a></p>
+        </div>
+    </div>
+</body>
+
+</html>

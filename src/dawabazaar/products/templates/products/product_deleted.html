@@ -1,0 +1,28 @@
+<!-- templates/seller/product_confirm_delete.html -->
+{% extends 'seller_portal/base.html' %}
+
+{% block title %}Delete Product - {{ product.name }}{% endblock %}
+
+{% block header_title %}Delete Product{% endblock %}
+
+{% block content %}
+<div class="delete-confirmation">
+    <div class="confirmation-content">
+        <i class="fas fa-exclamation-triangle"></i>
+        <h2>Are you sure you want to delete "{{ product.name }}"?</h2>
+        <p>This action cannot be undone.</p>
+        
+        <form method="POST">
+            {% csrf_token %}
+            <div class="confirmation-actions">
+                <a href="{% url 'products:listall-products' %}" class="btn btn-secondary">
+                    <i class="fas fa-times"></i> Cancel
+                </a>
+                <button type="submit" class="btn btn-danger">
+                    <i class="fas fa-trash"></i> Delete Product
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

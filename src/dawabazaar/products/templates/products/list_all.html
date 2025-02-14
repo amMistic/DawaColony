@@ -3,42 +3,88 @@
 {% block title %}Products - {{ seller.shopname }}{% endblock %}
 
 {% block header_title %}
+<!-- <div class="content-header"> -->
 Products
 <a href="{% url 'products:create-product' %}" class="btn btn-primary">
     <i class="fas fa-plus"></i> Add New Product
 </a>
+<!-- </div> -->
 {% endblock %}
 
 {% block content %}
-<div class="products-grid">
-    {% for product in products %}
-    <div class="product-card">
-        <div class="product-image">
-            <img src="{{ product.image.url }}" alt="{{ product.name }}">
-            {% if not product.is_active %}
-            <div class="inactive-overlay">Inactive</div>
-            {% endif %}
-        </div>
-        <div class="product-details">
-            <h3>{{ product.name }}</h3>
-            <p class="price">₹{{ product.price }}</p>
-            <p class="stock">Stock: {{ product.stock }}</p>
-            <div class="product-actions">
-                <a href="{% url 'products:edit-product' product.pk %}" class="btn btn-edit">
-                    <i class="fas fa-edit"></i> Edit
-                </a>
-                <a href="{% url 'products:delete-product' product.pk %}" class="btn btn-delete">
-                    <i class="fas fa-trash"></i> Delete
-                </a>
-            </div>
+<div class="table-container">
+    <div class="table-header">
+        <div class="table-filters">
+            <form method="get" class="filter-form">
+                <div class="table-search">
+                    {{ form.search_query }}
+                </div>
+                <select name="category" class="form-control" onchange="this.form.submit()">
+                    <option value="">All Categories</option>
+                    {% for category_code, category_name in categories %}
+                        <option value="{{ category_code }}" {% if selected_category == category_code %}selected{% endif %}>
+                            {{ category_name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </form>
         </div>
     </div>
-    {% empty %}
-    <div class="no-products">
+
+    {% if products %}
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                <tr>
+                    <td>
+                        <div class="product-name">{{ product.name }}</div>
+                        <small class="text-muted">{{ product.description|truncatechars:50 }}</small>
+                    </td>
+                    <td>{{ product.get_category_display }}</td>
+                    <td>₹{{ product.price }}</td>
+                    <td>
+                        <span class="stock-badge {% if product.stock <= 10 %}low{% elif product.stock <= 50 %}medium{% else %}high{% endif %}">
+                            {{ product.stock }}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="status-badge {% if product.is_active %}active{% else %}inactive{% endif %}">
+                            {% if product.is_active %}Active{% else %}Inactive{% endif %}
+                        </span>
+                    </td>
+                    <td>
+                        <div class="action-buttons">
+                            <a href="{% url 'products:edit-product' product.pk %}" class="btn btn-sm btn-primary">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="{% url 'products:delete-product' product.pk %}" class="btn btn-sm btn-danger">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="empty-state">
         <i class="fas fa-box-open"></i>
-        <p>No products added yet</p>
-        <!-- <a href="{% url 'products:create-product' %}" class="btn btn-primary">Add Your First Product</a> -->
+        <h3>No Products Available</h3>
+        
     </div>
-    {% endfor %}
+    
+    {% endif %}
 </div>
 {% endblock %}

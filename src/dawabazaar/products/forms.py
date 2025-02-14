@@ -3,7 +3,7 @@ from .models import Product
 
 class CreateProductForm(forms.ModelForm):
     class Meta:
-        model: Product
+        model = Product
         exclude = ["seller", "slug", "created_at", "updated_at"]
         widgets = {
             "name": forms.TextInput(
@@ -55,4 +55,24 @@ class CreateProductForm(forms.ModelForm):
         }
 
 
+class TableSearch(forms.Form):
+    search_query = forms.CharField(
+        max_length=128,
+        required=False,
+        widget=forms.TextInput(
+            attrs={
+                'placeholder' : 'Search Product',
+                'class' : 'form-control'
+            }
+        )
+    )
     
+    category = forms.ChoiceField(
+        choices=[('','All Category')] + list(Product.CATEGORY_CHOICES),
+        required=False,
+        widget=forms.Select(
+            attrs={
+                'class' : 'form-select'
+            }
+        )
+    )

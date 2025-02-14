@@ -5,6 +5,8 @@ app_name = "products"
 urlpatterns = [
     path("create/", create_product, name="create-product"),
     path("list_all/", product_list, name="listall-products"),
-    path("<int:pk>/edit/", product_list, name="edit-product"),
-    path("<int:pk>/delete/", product_list, name="delete-product"),
+    path("<int:pk>/edit/", edit_product, name="edit-product"),
+    path("<int:pk>/delete/", delete_product, name="delete-product"),
 ]
+
+

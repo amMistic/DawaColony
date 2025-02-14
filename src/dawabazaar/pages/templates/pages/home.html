@@ -152,15 +152,15 @@
                 {% if not request.user.is_authenticated %}
                 <a href="/login"><i class="fas fa-user"></i> Login</a>
                 {% elif request.user.role == 'Customer' %}
-                    <a href="{% url 'customer:user-profile'  %}">
-                        <i class="fas fa-user"></i>
-                        Profile 
-                    </a>
+                <a href="{% url 'customer:user-profile'  %}">
+                    <i class="fas fa-user"></i>
+                    Profile
+                </a>
                 {% elif request.user.role == 'Seller' %}
-                    <a href="{% url 'seller:user-profile'  %}">
-                        <i class="fas fa-user"></i>
-                        Profile 
-                    </a>
+                <a href="{% url 'seller:user-profile'  %}">
+                    <i class="fas fa-user"></i>
+                    Profile
+                </a>
                 {% endif %}
             </nav>
         </div>
@@ -178,56 +178,9 @@
         </div>
     </section>
 
-    <!-- Categories Section -->
-    <section class="categories">
-        <h2 class="section-title">Shop by Category</h2>
-        <div class="categories-grid">
-            <div class="category-card">
-                <a href="/login">
-                    <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=800"
-                        alt="Prescription Medicines">
-                    <div class="category-content">
-                        <h3>Prescription Medicines</h3>
-                        <p>Quality assured medicines with valid prescriptions</p>
-                    </div>
-                </a>
-            </div>
-            <div class="category-card">
-                <a href="/login">
-                    <img src="https://images.unsplash.com/photo-1631549916768-4119b2e5f926?auto=format&fit=crop&w=800"
-                        alt="Healthcare Devices">
-                    <div class="category-content">
-                        <h3>Healthcare Devices</h3>
-                        <p>Modern devices for better health monitoring</p>
-                    </div>
-                </a>
-            </div>
-            <div class="category-card">
-                <a href="/login">
-                    <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=800"
-                        alt="Personal Care">
-                    <div class="category-content">
-                        <h3>Personal Care</h3>
-                        <p>Essential products for daily wellness</p>
-                    </div>
-                </a>
-            </div>
-            <div class="category-card">
-                <a href="/login">
-                    <img src="https://images.unsplash.com/photo-1509475826633-fed577a2c71b?auto=format&fit=crop&w=800"
-                        alt="Ayurvedic">
-                    <div class="category-content">
-                        <h3>Ayurvedic</h3>
-                        <p>Traditional healing with modern convenience</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
     <!-- Products Section -->
     <section class="products">
-        <h2 class="section-title"> Top Sellers </h2>
+        <h2 class="section-title"> Ready-to-Go Health Kits </h2>
         <div class="products-grid">
             <div class="product-card">
                 <div class="product-image">
@@ -275,7 +228,126 @@
             </div>
         </div>
     </section>
-    
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <h2 class="section-title">Categories</h2>
+        <div class="categories-grid">
+
+            <div class="category-card">
+                <a href="/login">
+                    <img src="https://gdb.voanews.com/0592f3ce-0544-4408-b255-9903c9a58adf_cx0_cy7_cw0_w1200_r1.jpg"
+                        alt="Prescription Medicines">
+                    <div class="category-content">
+                        <h3>Prescription Medicines</h3>
+                        <p>Upload and get medicines easily.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="category-card">
+                <a href="/login">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnrWNc2FAqJcgffbpgTOe-poa-CThvZgwdVg&s" alt="Healthcare Devices">
+                    <div class="category-content">
+                        <h3>Healthcare Devices</h3>
+                        <p>Advanced gadgets for health monitoring</p>
+                    </div>
+                </a>
+            </div>
+            <div class="category-card">
+                <a href="/login">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEgpkXQdnkZRhzS2wbNiacrrKvB_bHTO5EfHhN3PGHzkHw89-hsDiPao490pml-pvDX28&usqp=CAU" alt="Surgical Products">
+                    <div class="category-content">
+                        <h3>Surgical Products</h3>
+                        <p>Reliable tools for safe procedures.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="category-card">
+                <a href="/login">
+                    <img src="https://img.forestessentialsindia.com/pub/media/megamenu/Mens-Care-3.jpg" alt="Ayurvedic Medicines">
+                    <div class="category-content">
+                        <h3>Ayurvedic Medicines</h3>
+                        <p>Natural remedies for better wellness.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="category-card">
+                <a href="/login">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRP2tAga50LVJmuCn4CxDyUHGKy_ZQdkVUwIQ&s" alt="Personal Care">
+                    <div class="category-content">
+                        <h3>Personal Care</h3>
+                        <p>Essential items for daily hygiene.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="category-card">
+                <a href="/login">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfEl1n81h6OuRUUfvs9K5ypGJO-pj8-Xzqtg&s" alt="Beauty Products">
+                    <div class="category-content">
+                        <h3>Beauty Products</h3>
+                        <p>Enhance your skincare and grooming</p>
+                    </div>
+                </a>
+            </div>
+            <div class="category-card">
+                <a href="/login">
+                    <img src="https://jumbotail.com/wp-content/uploads/2019/07/wide-range-of-products-500px.jpg" alt="Grocery Products">
+                    <div class="category-content">
+                        <h3>Grocery Products</h3>
+                        <p>Fresh and essential daily needs</p>
+                    </div>
+                </a>
+            </div>
+            <div class="category-card">
+                <a href="/login">
+                    <img src="https://images.unsplash.com/photo-1554284126-aa88f22d8b74?auto=format&fit=crop&w=800" alt="Fitness Enthusiasts">
+                    <div class="category-content">
+                        <h3>Fitness Enthusiasts</h3>
+                        <p>Gear up for a healthier lifestyle</p>
+                    </div>
+                </a>
+            </div>
+            <div class="category-card">
+                <a href="/login">
+                    <img src="https://media.istockphoto.com/id/818941458/photo/babies-goods-diaper-baby-powder-cream-shampoo-oil-on-white-background-with-copy-space-top-view.jpg?s=612x612&w=0&k=20&c=f12w82tE9fkC0E1IeH93B-ml-lm2TliW2tQC3a5jUcg=" alt="Baby Products">
+                    <div class="category-content">
+                        <h3>Baby Products</h3>
+                        <p>Quality assured medicines with valid prescriptions</p>
+                    </div>
+                </a>
+            </div>
+            <div class="category-card">
+                <a href="/login">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYBxrMRDdMc7L_ftmvzyHtGVQGbpliF2Xksg&s" alt="Sex Aware Products">
+                    <div class="category-content">
+                        <h3>Sex Aware Products</h3>
+                        <p>Modern devices for better health monitoring</p>
+                    </div>
+                </a>
+            </div>
+            <div class="category-card">
+                <a href="/login">
+                    <img src="https://assets.bonappetit.com/photos/63e6c29840953eab0f1ffca3/16:9/w_2560%2Cc_limit/Best_cleaning_products.jpg" alt="Household Products">
+                    <div class="category-content">
+                        <h3>HouseHold Products</h3>
+                        <p>Traditional healing with modern convenience</p>
+                    </div>
+                </a>
+            </div>
+            <div class="category-card">
+                <a href="/login">
+                    <img src="https://img.freepik.com/premium-vector/professional-flat-lay-composition-with-pet-accessories-bow_1034910-102222.jpg?semt=ais_hybrid" alt="Pet Products">
+                    <div class="category-content">
+                        <h3>Pets</h3>
+                        <p>Quality essentials for your pet’s health and happiness</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+
 
     <!-- Footer -->
     <footer class="footer">

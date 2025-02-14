@@ -69,7 +69,7 @@ def edit_address(request, address_id: int):
         if form.is_valid():
             form.save()
             messages.success(request, 'Adderss updated sucessfully!')
-            redirect('customer:manage-user-addresses')
+            return redirect('customer:manage-user-addresses')
     else:
         form=AddressForm(instance=address)
     

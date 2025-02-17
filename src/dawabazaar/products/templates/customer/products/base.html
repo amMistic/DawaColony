@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}DawaColoney{% endblock title %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'pages/css/home.css' %}">
+    <style>
+        
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 0.375rem;
+            transition: background-color 0.2s;
+        }
+
+        .nav-links a:hover {
+            background-color: var(--bg-primary);
+        }
+
+        .category-card a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .category-card a:visited,
+        .category-card a:hover,
+        .category-card a:active {
+            color: inherit;
+        }
+    </style>
+    {% block additionalstyle %}{% endblock additionalstyle %}
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="/" class="logo">
+                <i class="fas fa-clinic-medical"></i>
+                DawaColoney
+            </a>
+            <!-- <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search for medicines, healthcare products...">
+            </div> -->
+            <nav class="nav-links">
+                <a href="#">
+                    <i class="fas fa-search"></i>
+                    Search Product
+                </a>
+                <a href="#">
+                    <i class="fas fa-shopping-cart"></i>
+                    Cart
+                    <span class="cart-count">0</span>
+                </a>
+                {% if not request.user.is_authenticated %}
+                <a href="/login"><i class="fas fa-user"></i> Login</a>
+                {% elif request.user.role == 'Customer' %}
+                <a href="{% url 'customer:user-profile'  %}">
+                    <i class="fas fa-user"></i>
+                    Profile
+                </a>
+                {% elif request.user.role == 'Seller' %}
+                <a href="{% url 'seller:user-profile'  %}">
+                    <i class="fas fa-user"></i>
+                    Profile
+                </a>
+                {% endif %}
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About DawaColoney</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press Releases</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="#">Returns & Refunds</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Our Services</h3>
+                <ul>
+                    <li><a href="#">Upload Prescription</a></li>
+                    <li><a href="#">Medicine Reminder</a></li>
+                    <li><a href="#">Health Articles</a></li>
+                    <li><a href="#">Store Locator</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

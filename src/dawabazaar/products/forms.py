@@ -52,6 +52,26 @@ class CreateProductForm(forms.ModelForm):
                     "class": "form-check-input"
                 }
             ),
+            
+            "mrp": forms.NumberInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Maximum Retail Price (MRP)",
+                }
+            ),
+            
+            "expiry_date": forms.DateInput(
+                attrs={
+                    "class": "form-control",
+                    "type": "date"
+                }
+            ),
+            
+            "prescription_required": forms.CheckboxInput(
+                attrs={
+                    "class": "form-check-input"
+                }
+            ),
         }
 
 
@@ -75,4 +95,24 @@ class TableSearch(forms.Form):
                 'class' : 'form-select'
             }
         )
+    )
+    
+    
+class SortProductFilter(forms.Form):
+    SORT_CHOICES = [
+        ('', 'Sort By'),
+        ('price_low', 'Price: Low to High'),
+        ('price_high', 'Price: High to Low'),
+        ('name_asc', 'Name: A to Z'),
+        ('name_desc', 'Name: Z to A'),
+        ('stock', 'Stock Availability'),
+    ]
+    
+    sort = forms.ChoiceField(
+        choices=SORT_CHOICES,
+        required=False,
+        widget=forms.Select(attrs={
+            'class': 'sort-select',
+            'onchange': 'this.form.submit()'
+        })
     )

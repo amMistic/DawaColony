@@ -6,3 +6,9 @@
 
 # temperary file
 /src/temp.py
+
+# credentials.json
+credentials.json
+
+# database sqlite3
+/src/dawabazaar/db.sqlite3

@@ -27,6 +27,10 @@ urlpatterns = [
     path('',include('accounts.urls')),
     path('', include('pages.urls')),
     path('admin/', admin.site.urls),
+    
+    # for social auth
+    path('accounts/', include('allauth.urls')),
+    
 ]
 
 if settings.DEBUG:

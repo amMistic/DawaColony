@@ -153,6 +153,7 @@ body {
     font-weight: 500;
 }
 
+
 @media (max-width: 768px) {
     .container {
         max-width: 100%;

@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DawaColoney - Modern Healthcare</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'pages/css/home.css' %}">
     <style>
         .nav-links {
@@ -140,7 +142,7 @@
                 <input type="text" placeholder="Search for medicines, healthcare products...">
             </div> -->
             <nav class="nav-links">
-                <a href="#">
+                <a href="#category-section">
                     <i class="fas fa-search"></i>
                     Search Product
                 </a>
@@ -173,19 +175,19 @@
                 <h1>Your Health, Our Priority</h1>
                 <p>Experience healthcare shopping reimagined. Get authentic medicines and wellness products delivered to
                     your doorstep.</p>
-                <a href="#" class="cta-button">Explore Products</a>
+                <a href="#category-section" class="cta-button">Explore Products</a>
             </div>
         </div>
     </section>
 
     <!-- Products Section -->
     <section class="products">
-        <h2 class="section-title"> Ready-to-Go Health Kits </h2>
+        <h2 class="section-title">Essentials Health-KIT</h2>
         <div class="products-grid">
             <div class="product-card">
                 <div class="product-image">
                     <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=800"
-                        alt="Medicine 1">
+                        alt="Medicine 1" loading="lazy">
                 </div>
                 <div class="product-content">
                     <h3 class="product-title">Digital Blood Pressure Monitor</h3>
@@ -196,7 +198,7 @@
             <div class="product-card">
                 <div class="product-image">
                     <img src="https://images.unsplash.com/photo-1585435557343-3b092031a831?auto=format&fit=crop&w=800"
-                        alt="Medicine 2">
+                        alt="Medicine 2" loading="lazy">
                 </div>
                 <div class="product-content">
                     <h3 class="product-title">Vitamin D3 Supplements</h3>
@@ -207,7 +209,7 @@
             <div class="product-card">
                 <div class="product-image">
                     <img src="https://images.unsplash.com/photo-1576073719676-aa95576db207?auto=format&fit=crop&w=800"
-                        alt="Medicine 3">
+                        alt="Medicine 3" loading="lazy">
                 </div>
                 <div class="product-content">
                     <h3 class="product-title">Premium First Aid Kit</h3>
@@ -218,7 +220,7 @@
             <div class="product-card">
                 <div class="product-image">
                     <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=800"
-                        alt="Medicine 4">
+                        alt="Medicine 4" loading="lazy">
                 </div>
                 <div class="product-content">
                     <h3 class="product-title">Digital Thermometer</h3>
@@ -229,125 +231,170 @@
         </div>
     </section>
 
-    <!-- Categories Section -->
-    <section class="categories">
-        <h2 class="section-title">Categories</h2>
-        <div class="categories-grid">
-
-            <div class="category-card">
-                <a href="/login">
-                    <img src="https://gdb.voanews.com/0592f3ce-0544-4408-b255-9903c9a58adf_cx0_cy7_cw0_w1200_r1.jpg"
-                        alt="Prescription Medicines">
-                    <div class="category-content">
-                        <h3>Prescription Medicines</h3>
-                        <p>Upload and get medicines easily.</p>
+    <!-- Slider -->
+    <section  id="category-section" class="category-section">
+        <h2 class="section-title">Shop by Categories</h2>
+        <div class="container-fluid px-4">
+            <div class="row flex-nowrap overflow-auto pb-3" style="scroll-behavior: smooth;">
+                <!-- First card -->
+                <div class="col-auto" style="min-width: 300px;">
+                    <div class="category-card h-100">
+                        <a href="{% url 'products:display-product' 'prescription-medicines' %}">
+                            <img src="https://gdb.voanews.com/0592f3ce-0544-4408-b255-9903c9a58adf_cx0_cy7_cw0_w1200_r1.jpg"
+                                alt="Prescription Medicines">
+                            <div class="category-content">
+                                <h3>Prescription Medicines</h3>
+                                <p>Upload and get medicines easily.</p>
+                            </div>
+                        </a>
                     </div>
-                </a>
-            </div>
-            <div class="category-card">
-                <a href="/login">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnrWNc2FAqJcgffbpgTOe-poa-CThvZgwdVg&s" alt="Healthcare Devices">
-                    <div class="category-content">
-                        <h3>Healthcare Devices</h3>
-                        <p>Advanced gadgets for health monitoring</p>
+                </div>
+                <!-- Second card -->
+                <div class="col-auto" style="min-width: 300px;">
+                    <div class="category-card h-100">
+                        <a href="{% url 'products:display-product' 'healthcare-devices' %}">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnrWNc2FAqJcgffbpgTOe-poa-CThvZgwdVg&s"
+                                alt="Healthcare Devices">
+                            <div class="category-content">
+                                <h3>Healthcare Devices</h3>
+                                <p>Advanced gadgets for health monitoring</p>
+                            </div>
+                        </a>
                     </div>
-                </a>
-            </div>
-            <div class="category-card">
-                <a href="/login">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEgpkXQdnkZRhzS2wbNiacrrKvB_bHTO5EfHhN3PGHzkHw89-hsDiPao490pml-pvDX28&usqp=CAU" alt="Surgical Products">
-                    <div class="category-content">
-                        <h3>Surgical Products</h3>
-                        <p>Reliable tools for safe procedures.</p>
+                </div>
+                <!-- Third card -->
+                <div class="col-auto" style="min-width: 300px;">
+                    <div class="category-card h-100">
+                        <a href="{% url 'products:display-product' 'surgical-products' %}">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEgpkXQdnkZRhzS2wbNiacrrKvB_bHTO5EfHhN3PGHzkHw89-hsDiPao490pml-pvDX28&usqp=CAU"
+                                alt="Surgical Products">
+                            <div class="category-content">
+                                <h3>Surgical Products</h3>
+                                <p>Reliable tools for safe procedures.</p>
+                            </div>
+                        </a>
                     </div>
-                </a>
-            </div>
-            <div class="category-card">
-                <a href="/login">
-                    <img src="https://img.forestessentialsindia.com/pub/media/megamenu/Mens-Care-3.jpg" alt="Ayurvedic Medicines">
-                    <div class="category-content">
-                        <h3>Ayurvedic Medicines</h3>
-                        <p>Natural remedies for better wellness.</p>
+                </div>
+                <!-- Fourth card -->
+                <div class="col-auto" style="min-width: 300px;">
+                    <div class="category-card h-100">
+                        <a href="{% url 'products:display-product' 'ayurvedic-medicines' %}">
+                            <img src="https://img.forestessentialsindia.com/pub/media/megamenu/Mens-Care-3.jpg"
+                                alt="Ayurvedic Medicines" loading="lazy">
+                            <div class="category-content">
+                                <h3>Ayurvedic Medicines</h3>
+                                <p>Natural remedies for better wellness.</p>
+                            </div>
+                        </a>
                     </div>
-                </a>
-            </div>
-            <div class="category-card">
-                <a href="/login">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRP2tAga50LVJmuCn4CxDyUHGKy_ZQdkVUwIQ&s" alt="Personal Care">
-                    <div class="category-content">
-                        <h3>Personal Care</h3>
-                        <p>Essential items for daily hygiene.</p>
+                </div>
+                <!-- Fifth card -->
+                <div class="col-auto" style="min-width: 300px;">
+                    <div class="category-card h-100">
+                        <a href="{% url 'products:display-product' 'personal-care' %}">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRP2tAga50LVJmuCn4CxDyUHGKy_ZQdkVUwIQ&s"
+                                alt="Personal Care" loading="lazy">
+                            <div class="category-content">
+                                <h3>Personal Care</h3>
+                                <p>Essential items for daily hygiene.</p>
+                            </div>
+                        </a>
                     </div>
-                </a>
-            </div>
-            <div class="category-card">
-                <a href="/login">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfEl1n81h6OuRUUfvs9K5ypGJO-pj8-Xzqtg&s" alt="Beauty Products">
-                    <div class="category-content">
-                        <h3>Beauty Products</h3>
-                        <p>Enhance your skincare and grooming</p>
+                </div>
+                <!-- Sixth card -->
+                <div class="col-auto" style="min-width: 300px;">
+                    <div class="category-card h-100">
+                        <a href="{% url 'products:display-product' 'beauty-products' %}">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfEl1n81h6OuRUUfvs9K5ypGJO-pj8-Xzqtg&s"
+                                alt="Beauty Products" loading="lazy">
+                            <div class="category-content">
+                                <h3>Beauty Products</h3>
+                                <p>Enhance your skincare and grooming</p>
+                            </div>
+                        </a>
                     </div>
-                </a>
-            </div>
-            <div class="category-card">
-                <a href="/login">
-                    <img src="https://jumbotail.com/wp-content/uploads/2019/07/wide-range-of-products-500px.jpg" alt="Grocery Products">
-                    <div class="category-content">
-                        <h3>Grocery Products</h3>
-                        <p>Fresh and essential daily needs</p>
+                </div>
+                <!-- Seventh card -->
+                <div class="col-auto" style="min-width: 300px;">
+                    <div class="category-card h-100">
+                        <a href="{% url 'products:display-product' 'grocery-products' %}">
+                            <img src="https://jumbotail.com/wp-content/uploads/2019/07/wide-range-of-products-500px.jpg"
+                                alt="Grocery Products" loading="lazy">
+                            <div class="category-content">
+                                <h3>Grocery Products</h3>
+                                <p>Fresh and essential daily needs</p>
+                            </div>
+                        </a>
                     </div>
-                </a>
-            </div>
-            <div class="category-card">
-                <a href="/login">
-                    <img src="https://images.unsplash.com/photo-1554284126-aa88f22d8b74?auto=format&fit=crop&w=800" alt="Fitness Enthusiasts">
-                    <div class="category-content">
-                        <h3>Fitness Enthusiasts</h3>
-                        <p>Gear up for a healthier lifestyle</p>
+                </div>
+                <!-- Eighth card -->
+                <div class="col-auto" style="min-width: 300px;">
+                    <div class="category-card h-100">
+                        <a href="{% url 'products:display-product' 'fitness-enthusiasts' %}">
+                            <img src="https://images.unsplash.com/photo-1554284126-aa88f22d8b74?auto=format&fit=crop&w=800"
+                                alt="Fitness Enthusiasts" loading="lazy">
+                            <div class="category-content">
+                                <h3>Fitness Enthusiasts</h3>
+                                <p>Gear up for a healthier lifestyle</p>
+                            </div>
+                        </a>
                     </div>
-                </a>
-            </div>
-            <div class="category-card">
-                <a href="/login">
-                    <img src="https://media.istockphoto.com/id/818941458/photo/babies-goods-diaper-baby-powder-cream-shampoo-oil-on-white-background-with-copy-space-top-view.jpg?s=612x612&w=0&k=20&c=f12w82tE9fkC0E1IeH93B-ml-lm2TliW2tQC3a5jUcg=" alt="Baby Products">
-                    <div class="category-content">
-                        <h3>Baby Products</h3>
-                        <p>Quality assured medicines with valid prescriptions</p>
+                </div>
+                <!-- Ninth card -->
+                <div class="col-auto" style="min-width: 300px;">
+                    <div class="category-card h-100">
+                        <a href="{% url 'products:display-product' 'baby-products' %}">
+                            <img src="https://media.istockphoto.com/id/818941458/photo/babies-goods-diaper-baby-powder-cream-shampoo-oil-on-white-background-with-copy-space-top-view.jpg?s=612x612&w=0&k=20&c=f12w82tE9fkC0E1IeH93B-ml-lm2TliW2tQC3a5jUcg="
+                                alt="Baby Products" loading="lazy">
+                            <div class="category-content">
+                                <h3>Baby Products</h3>
+                                <p>Quality assured medicines with valid prescriptions</p>
+                            </div>
+                        </a>
                     </div>
-                </a>
-            </div>
-            <div class="category-card">
-                <a href="/login">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYBxrMRDdMc7L_ftmvzyHtGVQGbpliF2Xksg&s" alt="Sex Aware Products">
-                    <div class="category-content">
-                        <h3>Sex Aware Products</h3>
-                        <p>Modern devices for better health monitoring</p>
+                </div>
+                <!-- Tenth card -->
+                <div class="col-auto" style="min-width: 300px;">
+                    <div class="category-card h-100">
+                        <a href="{% url 'products:display-product' 'sex-aware-products' %}">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYBxrMRDdMc7L_ftmvzyHtGVQGbpliF2Xksg&s"
+                                alt="Sex Aware Products" loading="lazy">
+                            <div class="category-content">
+                                <h3>Sexual Wellness</h3>
+                                <p>Modern devices for better health monitoring</p>
+                            </div>
+                        </a>
                     </div>
-                </a>
-            </div>
-            <div class="category-card">
-                <a href="/login">
-                    <img src="https://assets.bonappetit.com/photos/63e6c29840953eab0f1ffca3/16:9/w_2560%2Cc_limit/Best_cleaning_products.jpg" alt="Household Products">
-                    <div class="category-content">
-                        <h3>HouseHold Products</h3>
-                        <p>Traditional healing with modern convenience</p>
+                </div>
+                <!-- Eleventh card -->
+                <div class="col-auto" style="min-width: 300px;">
+                    <div class="category-card h-100">
+                        <a href="{% url 'products:display-product' 'household-products' %}">
+                            <img src="https://assets.bonappetit.com/photos/63e6c29840953eab0f1ffca3/16:9/w_2560%2Cc_limit/Best_cleaning_products.jpg"
+                                alt="Household Products" loading="lazy">
+                            <div class="category-content">
+                                <h3>Household Products</h3>
+                                <p>Traditional healing with modern convenience</p>
+                            </div>
+                        </a>
                     </div>
-                </a>
-            </div>
-            <div class="category-card">
-                <a href="/login">
-                    <img src="https://img.freepik.com/premium-vector/professional-flat-lay-composition-with-pet-accessories-bow_1034910-102222.jpg?semt=ais_hybrid" alt="Pet Products">
-                    <div class="category-content">
-                        <h3>Pets</h3>
-                        <p>Quality essentials for your pet’s health and happiness</p>
+                </div>
+                <!-- Twelfth card -->
+                <div class="col-auto" style="min-width: 300px;">
+                    <div class="category-card h-100">
+                        <a href="{% url 'products:display-product' 'pet-products' %}">
+                            <img src="https://img.freepik.com/premium-vector/professional-flat-lay-composition-with-pet-accessories-bow_1034910-102222.jpg?semt=ais_hybrid"
+                                alt="Pet Products" loading="lazy">
+                            <div class="category-content">
+                                <h3>Pets</h3>
+                                <p>Quality essentials for your pet's health and happiness</p>
+                            </div>
+                        </a>
                     </div>
-                </a>
+                </div>
             </div>
         </div>
     </section>
-
-
-
 
     <!-- Footer -->
     <footer class="footer">
@@ -356,7 +403,7 @@
                 <h3>About DawaColoney</h3>
                 <ul>
                     <li><a href="#">About Us</a></li>
-                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Careers</a></li>6584
                     <li><a href="#">Press Releases</a></li>
                     <li><a href="#">Blog</a></li>
                 </ul>
@@ -390,6 +437,7 @@
             </div>
         </div>
     </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
